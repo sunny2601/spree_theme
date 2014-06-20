@@ -1,0 +1,4 @@
+<!-- insert_top '#nav-bar' -->
+<li id="link-to-cart" data-hook>
+  <%= link_to_cart %>
+</li>
