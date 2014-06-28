@@ -13,7 +13,7 @@ body {
 .hidden { display: none }
 
 #logo {
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 #welcome-message {
@@ -60,7 +60,7 @@ body {
 }
 
 #latest-products, #featured-products {
-  margin: 40px 0 ;
+  margin: 40px 0;
   text-align: center;
 
   .bx-wrapper {
@@ -96,16 +96,20 @@ body {
   }
 
   .product-image {
+    margin: 5px;
+
     a {
-      @include border-radius(165px);
+      @include border-radius(0px);
       border-width: 2px;
-      width: 160px;
-      height: 160px;
+      min-width: 160px;
+      min-height: 160px;
+
+      img {
+        @include border-radius(0px);
+        margin: 0 auto;
+      }
     }
 
-    img {
-      @include border-radius(45px);
-    }
   }
 }
 
@@ -114,11 +118,14 @@ body {
 }
 
 ul#products {
-  max-width: 600px;
+  max-width: 800px;
 }
 
 ul#products li {
-  margin-bottom: 20px;
+  width: 200px;
+  min-height: 200px;
+  min-width: 200px;
+  margin: 5px 25px;
 
   a.info {
     height: inherit;
@@ -131,18 +138,23 @@ ul#products li {
   }
 
   .product-image {
+
     border: none;
     min-height: 155px;
-    padding: 0;
+    padding: 8px;
 
     a {
+      @include border-radius(0);
       border-color: lighten($c_blue, 30);
       border-width: 2px;
-      padding: 30px 22px 30px 20px;
+      box-shadow: #EEE 0px 1px 5px 0px;
+
+      padding: 6px 22px 0 22px;
       float: none;
 
       img {
         @include border-radius(0);
+        margin: 0;
       }
     }
   }
