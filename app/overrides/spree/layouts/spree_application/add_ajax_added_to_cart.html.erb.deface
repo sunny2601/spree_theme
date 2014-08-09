@@ -1,0 +1,24 @@
+<!-- insert_top '[data-hook="body"]' -->
+<div id="ajax_cart_flash" class="dialog">
+  <span style="margin-left: 625px;">
+    <button class="button close-dialog-button">X</button>
+  </span>
+  <ul id="products" class="inline">
+    <li class="product-row">
+      <span id="dialog_image" class="dialog-image product-image"></span>
+    </li>
+  </ul>
+  <div class="purchase-header">
+    <span id="dialog_original_price" class="purchase-complete-message dialog-original-price"></span>
+    <span id="dialog_price" class="price selling"></span>
+    <div class="purchase-option-details">
+      <span id="dialog_name" class="name"></span>
+      <span id="dialog_description" class="description"> has sucessfully been added to your cart.</span>
+    </div>
+  </div>
+  <div style="margin-left: 320px;">
+    <span><button class="button close-dialog-button">Continue Shopping</button></span>
+    <span><%= link_to_with_icon('icon-basket', Spree.t(:view_cart), spree.cart_path, { class: 'icon-basket button' }) %></span>
+  </div>
+</div>
+<div style="display: none;" class="dialog-overlay"></div>

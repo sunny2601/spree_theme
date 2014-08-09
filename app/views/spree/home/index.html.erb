@@ -6,7 +6,7 @@
   <div class="container">
     <h1>
       Welcome to the UC store!
-      <br>
+      <br/>
       Browse all <a href="/products">products</a> or watch a <a href="/t/movies/uv">UV Movie</a> after transferring your selections to a UV account 
     </h1>
   </div>
@@ -19,7 +19,7 @@
       <hr>
       <ul class="carousel">
         <% @featured_products.each do |product| %>
-          <%= render 'product', :product => product %>
+          <%= render partial: 'product', locals: { product: product } %>
         <% end %>
       </ul>
     </div>
@@ -31,7 +31,7 @@
       <hr>
       <ul class="carousel">
         <% @latest_products.sort_by{ |product| product.created_at }.reverse.each do |product| %>
-          <%= render 'product', :product => product %>
+          <%= render partial: 'product', locals: { product: product } %>
         <% end %>
       </ul>
     </div>

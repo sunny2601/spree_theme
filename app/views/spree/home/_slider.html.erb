@@ -7,19 +7,19 @@
             <%= link_to product_image(product), product %>
           </div>
           <div class="product-info">
-            <h1 class="product-title"><%= product.name %> - <%= product.sku %></h1>
+            <h1 class="product-title"><%= product.name %></h1>
             <div class="product-description">
               <%= product.description.to_s.html_safe %>
             </div>
             <div class="product-order-form">
-              <%= form_for :order, :url => populate_orders_path do |f| %>
+              <%= form_for :order, url: populate_orders_path do |f| %>
                 <span class="product-price">
                   <%= product.display_price %>
                 </span>
-                <%= number_field_tag :quantity, 1, :class => 'title', :in => 1..Spree::Stock::Quantifier.new(product.master).total_on_hand, :min => 1 %>
+                <%= number_field_tag :quantity, 1, class: 'title', in: 1..Spree::Stock::Quantifier.new(product.master).total_on_hand, min: 1 %>
                 <%= hidden_field_tag :variant_id, product.master.id %>
-                <%= button_tag :id => 'add-to-cart-button', :type => :submit do %>
-                  <%= content_tag(:i, '', :class => 'icon-plus') + " " + Spree.t(:add_to_cart) %>
+                <%= button_tag id: 'add-to-cart-button', type: :submit do %>
+                  <%= content_tag(:i, '', class: 'icon-plus') + " " + Spree.t(:add_to_cart) %>
                 <% end %>
               <% end %>
             </div>

@@ -2,7 +2,7 @@
 <div class="product-image">
   <%= link_to product_image(product), product %>
 </div>
-<%= link_to truncate(product.name, :length => 50), product, :class => 'product-name', :title => product.name %>
+<%= link_to truncate(product.name, length: 50), product, class: 'product-name', title: product.name %>
 <div class="product-sku">
   <%= product.sku %>
 </div>

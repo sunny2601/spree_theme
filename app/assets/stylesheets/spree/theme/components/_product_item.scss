@@ -73,9 +73,11 @@
       border: 1px solid lighten($body_text_color, 30);
       text-align: center;
       display: block;
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       @include opacity(0.7);
+      @include border-radius(0);
+      margin: auto;
 
       &:hover {
         @include opacity(1);
@@ -83,11 +85,12 @@
       }
 
       &, img {
-        @include border-radius(16px);
+        @include border-radius(0);
       }
 
       img {
-        padding: 1px;
+        padding: 6px;
+        margin: auto;
       }
     }
 

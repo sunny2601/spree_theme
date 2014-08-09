@@ -183,3 +183,50 @@ $(function(){
   });
 
 }).call(this);
+
+//var hide_dialog = function() {
+//    $('.dialog').hide();
+//    $('.dialog-overlay').hide();
+//  });
+
+$(function () {
+  $('.dialog-overlay').on('click', function() {
+    $('.dialog').hide();
+    $('.dialog-overlay').hide();
+  });
+});
+
+$(function () {
+  $('.close-dialog-button').on('click', function() {
+    $('.dialog').hide();
+    $('.dialog-overlay').hide();
+  });
+});
+
+$(function() {
+  $('a[data-type=json]').on('click', function() {
+    $('.dialog-overlay').show();
+//    $('.dialog-overlay').off('click');
+  });
+  $('a[data-type=json]').on('ajax:success', function(e, data, status, xhr) {
+    $('#dialog_image').html(data.image);
+    $('#dialog_name').html(data.name);
+    $('#dialog_original_price').html(data.original_price);
+    $('#dialog_price').html(data.price);
+//Show/View Cart
+
+
+//You Might Also Like
+
+//In cart
+//Add to Cart
+//Item in Cart
+
+//Previously Purchased
+//    $('div#ajax_cart_flash').html(dialog_html);
+    $('.dialog-overlay').show();
+    $('.dialog').show();
+//    $('.dialog-overlay').on('click', hide_dialog);
+    Spree.fetch_cart();
+    });
+});
