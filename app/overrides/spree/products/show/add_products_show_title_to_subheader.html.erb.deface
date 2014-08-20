@@ -1,4 +1,4 @@
-<!-- replace 'h1.product-title' -->
+<!-- surround 'h1.product-title' -->
 <% content_for :subheader do %>
   <%= render_original %>
 <% end %>
