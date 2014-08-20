@@ -3,4 +3,7 @@
 
 en:
   spree:
-    shop: "Shop"
+    shop: Shop
+    store_home: Store Home
+    view_cart: View Cart
+
