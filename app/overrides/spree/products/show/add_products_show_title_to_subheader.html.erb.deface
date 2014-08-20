@@ -1,3 +1,0 @@
-cut 'h1.product-title'
-replace_contents 'subheader-wrapper'
-sequence :after => 'add_subheader_to_layout'
