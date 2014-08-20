@@ -1,1 +1,2 @@
 <!-- remove 'h1.product-title' -->
+<!-- sequence :after => 'add_subheader_to_layout' -->
