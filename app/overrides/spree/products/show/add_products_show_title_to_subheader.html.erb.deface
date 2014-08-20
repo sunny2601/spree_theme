@@ -1,2 +1,5 @@
-<!-- remove 'h1.product-title' -->
-<!-- sequence :after => 'add_subheader_to_layout' -->
+<!-- replace 'h1.product-title' -->
+<!-- sequence :before => 'add_subheader_to_layout' -->
+<% content_for :subheader do %>
+  <h1 class="product-title" itemprop="name"><%= accurate_title %></h1>
+<% end %>
