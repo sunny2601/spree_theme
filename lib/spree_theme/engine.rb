@@ -14,7 +14,8 @@ module SpreeTheme
     initializer :assets do |config|
       Rails.application.config.assets.precompile += %w( spree/theme/print.css )
       Rails.application.config.assets.precompile << %r(icons\.(?:eot|svg|ttf|woff)$)
-      Rails.application.config.assets.precompile << %w( bx_loader.gif controls.png )
+      Rails.application.config.assets.precompile += %w( bx_loader.gif controls.png )
+      Rails.application.config.assets.precompile += %w( enquire.js jquery.easydropdown.js jquery.hoverIntent.js jquery.bxslider.js matchMedia.js jquery.dotdotdot-1.5.2.js )
     end
 
     def self.activate

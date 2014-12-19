@@ -1,4 +1,5 @@
 <!-- replace '#home-link' -->
+<li><a href="#" class="close-menu"><i class="icon-menu"></i></a></li>
 <li id="home-link" data-hook><%= link_to Spree.t(:store_home), spree.root_path %></li>
 <li id="shop-link"><%= link_to Spree.t(:products), spree.products_path %>
   <% if @taxonomies %>

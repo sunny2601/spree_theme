@@ -2,4 +2,15 @@
 <!-- sequence :after => 'unwrap_header_from_container_class' -->
 <div class="container">
   <%= render_original %>
+<div class="columns three">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Wide Vertical Banner -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:160px;height:600px"
+     data-ad-client="ca-pub-9050834417500806"
+     data-ad-slot="6224577373"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 //= require spree/frontend
 //= require jquery.hoverIntent
-//= require jquery.ui.all
+//= require jquery-ui
 //= require jquery.bxslider
 //= require jquery.dotdotdot-1.5.2
 //= require matchMedia
@@ -47,7 +47,7 @@ $(function(){
 
   }
 
-  // Make buttons from radio inoputs
+  // Make buttons from radio inputs
   $( "#product-variants .variants-buttons" ).buttonset();
   $( ".payment-method-selector").buttonset();
 
@@ -65,23 +65,63 @@ $(function(){
   $("#search-bar").hoverIntent(searchHoverConfig);
 
   // Cart table responsive fixes
-  var cart_description_header = $('[data-hook="cart_items_headers"]').find('.cart-item-description-header');
-  var cart_adjustment_header = $('[data-hook="cart_items"]').find('.cart-adjustment-header');
+  var cart_description_header = $('th.cart-item-description-header');
+  var cart_subtotal_header = $('tr.cart-subtotal td').first();
+  var cart_total_header = $('tr.cart-total td').first();
+  var cart_adjustment_header = $('#cart_adjustments tr').find(':first-child');
 
   // Media
   enquire.register("screen and (max-width: 767px)", {
+      //Mobile
       match : function() {
+        $('#navigation, #mobile-navigation').children().detach().appendTo("#mobile-navigation");
         if(cart_description_header.length > 0 || cart_adjustment_header.length > 0) {
-          cart_description_header.attr('colspan', '0');
-          cart_adjustment_header.attr('colspan', '5');
+          cart_description_header.attr('colspan', '1');
+          cart_subtotal_header.attr('colspan', '3');
+          cart_total_header.attr('colspan', '3');
+          cart_adjustment_header.attr('colspan', '3');
         }
       },
+      //Non-mobile
       unmatch : function() {
+        $('#navigation, #mobile-navigation').children().detach().appendTo("#navigation");
         if(cart_description_header.length > 0 || cart_adjustment_header.length > 0) {
           cart_description_header.attr('colspan', '2');
-          cart_adjustment_header.attr('colspan', '6');
+          cart_subtotal_header.attr('colspan', '4');
+          cart_total_header.attr('colspan', '4');
+          cart_adjustment_header.attr('colspan', '4');
         }
       }
+  }).listen();
+
+  enquire.register("screen and (max-width: 479px)", {
+    match : function() {
+      $('div[data-hook="cart_container"]').parent().parent().css("width", "auto");
+      $('#google_ads ins').css("width", "287px").css("height", "80px");
+    },
+    unmatch : function() {
+      $('div[data-hook="cart_container"]').parent().parent().css("width", "");
+    }
+  }).listen();
+
+  enquire.register("screen and (min-width: 768px) and (max-width: 959px)", {
+    match : function() {
+      $('div[data-hook="cart_container"]').parent().parent().css("width", "auto");
+      $('#google_ads ins').css("width", "735px").css("height", "120px");
+    },
+    unmatch : function() {
+      $('div[data-hook="cart_container"]').parent().parent().css("width", "");
+      //$('#google_ads ins').css("width", "935px").css("height", "140px");
+    }
+  }).listen();
+
+  enquire.register("screen and (min-width: 480px) and (max-width: 767px)", {
+    match : function() {
+      $('#google_ads ins').css("width", "435px").css("height", "100px");
+    },
+    unmatch : function() {
+      $('#google_ads ins').css("width", "935px").css("height", "140px");
+    }
   }).listen();
 
 });

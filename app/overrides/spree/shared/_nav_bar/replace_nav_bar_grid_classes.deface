@@ -1,2 +1,2 @@
 set_attributes '#top-nav-bar'
-attributes :class => 'columns five'
+attributes :class => 'columns six'

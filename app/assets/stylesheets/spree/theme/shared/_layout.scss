@@ -14,6 +14,7 @@ body {
 
 #logo {
   margin-top: 0;
+  width: 85%;
 }
 
 #welcome-message {
@@ -96,33 +97,17 @@ body {
   }
 
   .product-image {
-    margin: 5px;
-
-    a {
-      @include border-radius(0px);
-      border-width: 2px;
-      min-width: 160px;
-      min-height: 160px;
-      max-width: 220px;
-      max-height: 220px;
-
-      img {
-        @include border-radius(0px);
-        margin: 0 auto;
-      }
-    }
-
   }
 }
 
 #sidebar {
   margin-bottom: 30px;
 }
-
+/*
 ul#products {
-  max-width: 800px;
+  max-width: 640px;
 }
-
+*/
 .product-cart {
   width: 100%;
   .price {
@@ -139,12 +124,7 @@ ul#products {
 .product-row {
     display: inline !important;
 }
-.product {
-    height: 50px;
-}
-.product .info {
-    margin: auto;
-}
+
 
 .dialog-overlay {
     opacity: 0.8;
@@ -258,15 +238,7 @@ ul#products {
     vertical-align: middle;
 }
 
-
-
-
 ul#products li {
-  width: 200px;
-  min-height: 200px;
-  min-width: 200px;
-  margin: 5px;
-
   a.info {
     height: inherit;
     font-weight: 400;
@@ -279,23 +251,53 @@ ul#products li {
 
   .product-image {
     border: none;
-    padding: 8px;
-
     a {
-      @include border-radius(0);
-      border-color: lighten($c_blue, 30);
-      border-width: 2px;
-      box-shadow: #EEE 0px 1px 5px 0px;
-
-      padding: 6px 22px 0 22px;
-      float: none;
-
-      img {
-        @include border-radius(0);
-        margin: 0;
-      }
+      border: 2px solid lighten($c_blue, 30);
     }
   }
+
+  [data-hook="products_list_item"] {
+    width: 210px;
+
+    .info {
+      margin: auto;
+      height: 50px;
+    }
+  }
+}
+
+.product-image {
+  border: none;
+  padding: 5px;
+
+  a {
+    border: 2px solid lighten($c_blue, 30);
+    box-shadow: #EEE 2px 2px 5px 3px;
+
+    display: block;
+
+    min-width: 178px;
+    min-height: 178px;
+
+    padding: 9px;
+    float: none;
+
+    position: relative;
+    img {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      margin: auto;
+      max-width: 178px;
+      max-height: 178px;
+    }
+  }
+}
+
+#bulk-discount {
+  float: left;
+  border: 1px solid #DEDEDE;
+  margin: 5px;
+  padding: 5px;
 }
 
 #wrapper {
@@ -319,6 +321,13 @@ ul#products li {
 .taxons-list {
   margin-bottom: 40px;
 }
+
+.adsbygoogle {
+  display:inline-block;
+  width: 935px;
+  height: 140px;
+}
+
 
 footer#footer {
   @include single-box-shadow(darken($c_blue, 10), 0, 0, 15px, 0, true);

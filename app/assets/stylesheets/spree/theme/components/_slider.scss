@@ -78,13 +78,13 @@
       a {
         float: none;
         margin: 0 auto;
-      }  
+      }
     }
 
     .product-name {
       display: block;
       font-size: 16px;
-      margin-top: 20px;
+      margin: 20px;
     }
 
     .product-sku {
@@ -93,26 +93,17 @@
   }
 }
 
+#home-slider {
+
 .product-image {
   a {
-    @include border-radius(75px);
-    @include transition-duration(0.3s);
+    box-shadow: #EEE 0 0 0 0;
     float: left;
-    display: block;
-    position: relative;
-    display: block;
     background-color: white;
-    border: 5px solid lighten($c_green, 15);
-    padding: 20px;
     overflow: hidden;
-
-    img {
-      @include border-radius(16px);
-    }
   }
 }
 
-#home-slider {
   h1 {
     font-size: 24px !important;
     font-weight: 600 !important;
@@ -150,8 +141,17 @@
       .product-image {
         overflow: auto;
         float: left;
-        width: 35%;
-        margin-top: 40px;
+        margin: 10px;
+
+        a {
+          @include border-radius(75px);
+          border-width: 5px;
+          border-color: lighten($c_green, 15);
+          border: 5px solid lighten($c_green, 15);
+          img {
+            @include border-radius(16px);
+          }
+        }
       }
 
       input[type="number"] {
