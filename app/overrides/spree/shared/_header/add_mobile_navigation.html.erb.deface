@@ -1,0 +1,9 @@
+<!-- surround 'erb:contains("spree/shared/main_nav_bar")' -->
+<a href="#mobile-navigation" class="open-menu">
+  <i class="icon-menu"></i>
+</a>
+<div id="mobile-navigation">
+</div>
+<div id="navigation">
+  <%= render_original %>
+</div>
