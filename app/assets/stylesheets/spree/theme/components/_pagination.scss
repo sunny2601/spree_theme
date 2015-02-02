@@ -1,5 +1,6 @@
 .pagination {
   text-align: center;
+  margin-bottom: 5px;
 
   .page {
     @include border-radius(25px);

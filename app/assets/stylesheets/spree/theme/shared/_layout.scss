@@ -276,10 +276,10 @@ ul#products li {
 
     display: block;
 
-    min-width: 178px;
-    min-height: 178px;
+    min-width: 192px;
+    min-height: 192px;
 
-    padding: 9px;
+    padding: 2px;
     float: none;
 
     position: relative;
@@ -287,8 +287,8 @@ ul#products li {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       margin: auto;
-      max-width: 178px;
-      max-height: 178px;
+      max-width: 192px;
+      max-height: 192px;
     }
   }
 }
@@ -326,6 +326,18 @@ ul#products li {
   display:inline-block;
   width: 935px;
   height: 140px;
+}
+
+.adsbygoogle-product {
+  display:inline-block;
+  width: 700px;
+  height: 120px;
+}
+
+.adsbygoogle-vertical {
+  display:inline-block;
+  width: 160px;
+  height: 665px;
 }
 
 

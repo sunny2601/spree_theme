@@ -1,8 +1,8 @@
 <!-- replace 'ul#products' -->
 <ul id="products" class="inline product-listing" data-hook>
-  <% products.in_groups_of(3, false).each do |product_row| %>
     <li class="product-row">
       <ul>
+  <% products.in_groups_of(3, false).each do |product_row| %>
         <% product_row.each do |product| %>
           <li id="product_<%= product.id %>" class="product four <%= cycle('alpha', 'secondary', 'omega', name: 'classes') %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
             <div class="product-image">
@@ -16,8 +16,8 @@
             </span>
           </li>
         <% end %>
-      </ul>
-    </li>
   <% end %>
   <% reset_cycle("classes") %>
+      </ul>
+    </li>
 </ul>

@@ -1,0 +1,42 @@
+<!-- replace 'erb:contains("labels.each do")' closing_selector "erb:contains('end')" -->
+          <% p = params[:search] && params[:search][filter[:scope]] %>
+          <% pr = filter[:name] == Spree.t(:price_range) %>
+          <% p && pr && price_range = params[:search][filter[:scope]] %>
+          <% sb = filter[:name] == Spree.t(:sort_by) %>
+
+          <% if pr %>
+              <li class="inline">
+          <% elsif sb %>
+              <li class="inline">
+                <%= select_tag("search["+filter[:scope].to_s+"][]", options_for_select(labels, p ? params[:search][filter[:scope]] : "name-asc"), {onchange: "javascript:submit();"} ) %>
+              </li>
+          <% end %>
+
+          <% labels.each do |nm,val| %>
+            <% label = "#{filter[:name]}_#{nm}".gsub(/\s+/,'_') %>
+            <% if pr %>
+                <% p && val ||= '%.2f' % price_range.shift.to_f %>
+                <% val = "" if val.to_f == 0.00 %>
+                <span style="display: inline-block;">$<input type="text"
+                       id="<%= label %>"
+                       name="search[<%= filter[:scope].to_s %>][]"
+                       value="<%= val %>"
+                       style="width:4.5em; padding: 7px 10px;"
+                       /></span>
+                <label class="inline" for="<%= label %>"> <%= nm %> </label>
+            <% else %>
+              <li class="nowrap">
+                <input type="<%= filter[:input].nil? ? 'checkbox' : filter[:input] %>"
+                       id="<%= label %>"
+                       name="search[<%= filter[:scope].to_s %>][]"
+                       value="<%= val %>"
+                       <%= params[:search][filter[:scope]].include?(val.to_s) ? "checked" : "" if p %>
+                       />
+                <label class="nowrap" for="<%= label %>"> <%= nm %> </label>
+              </li>
+            <% end %>
+          <% end if !sb%>
+
+          <% if pr %>
+              </li>
+          <% end %>
