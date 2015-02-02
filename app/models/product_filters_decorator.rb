@@ -162,7 +162,7 @@ module Spree
           scope = opts.map {|o| conds[o] }.reject(&:blank?).uniq
           return scoped if scope.all?(&:blank?)
           table_alias = "#{method_any}_alias"
-          joins('INNER JOIN "spree_product_properties" AS "' + table_alias + '" ON "' + table_alias + '"."product_id" = "spree_products"."id"').where(table_alias => { value: scope})
+          joins('INNER JOIN `spree_product_properties` AS `' + table_alias + '` ON `' + table_alias + '`.`product_id` = `spree_products`.`id`').where(table_alias => { value: scope})
           #joins(:product_properties).where(Spree::ProductProperty.table_name => { value: scope})
         end
 
