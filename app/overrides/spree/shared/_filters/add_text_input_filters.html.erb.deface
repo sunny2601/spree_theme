@@ -1,15 +1,25 @@
-<!-- replace 'erb:contains("labels.each do")' closing_selector "erb:contains('end')" -->
+<!-- replace 'erb:contains("labels.each")' closing_selector "erb:contains('end')" -->
           <% p = params[:search] && params[:search][filter[:scope]] %>
           <% pr = filter[:name] == Spree.t(:price_range) %>
           <% p && pr && price_range = params[:search][filter[:scope]] %>
           <% sb = filter[:name] == Spree.t(:sort_by) %>
+          <% max_properties = 10 #Spree::Config[:max_properties] || 10 %>
+          <% show_individual_props = true %>
 
-          <% if pr %>
-              <li class="inline">
-          <% elsif sb %>
-              <li class="inline">
-                <%= select_tag("search["+filter[:scope].to_s+"][]", options_for_select(labels, p ? params[:search][filter[:scope]] : "name-asc"), {onchange: "javascript:submit();"} ) %>
-              </li>
+
+          <% if sb %>
+            <li class="nowrap">
+              <%= select_tag("search["+filter[:scope].to_s+"][]", options_for_select(labels, p ? params[:search][filter[:scope]] : "name-asc"), {onchange: "javascript:submit();", :class => 'select2 fullwidth'} ) %>
+            </li>
+          <% elsif labels.size > max_properties %>
+            <% show_individual_props = false %>
+            <li class="nowrap">
+              <%= select_tag "search["+filter[:scope].to_s+"][]", options_for_select(labels, p ? params[:search][filter[:scope]] : [] ), {:placeholder => "None Selected", :multiple => true, :class => 'select2 fullwidth' } %>
+            </li>
+          <% elsif pr %>
+            <li class="nowrap">
+          <% elsif false %>
+            </li>
           <% end %>
 
           <% labels.each do |nm,val| %>
@@ -24,7 +34,7 @@
                        style="width:4.5em; padding: 7px 10px;"
                        /></span>
                 <label class="inline" for="<%= label %>"> <%= nm %> </label>
-            <% else %>
+            <% elsif show_individual_props %>
               <li class="nowrap">
                 <input type="<%= filter[:input].nil? ? 'checkbox' : filter[:input] %>"
                        id="<%= label %>"
@@ -37,6 +47,8 @@
             <% end %>
           <% end if !sb%>
 
-          <% if pr %>
-              </li>
+          <% if false %>
+            <li>
+          <% elsif pr %>
+            </li>
           <% end %>

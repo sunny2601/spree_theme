@@ -160,7 +160,7 @@ module Spree
 
           #scope = opts.reject{|o| !props.include?(o) }
           scope = opts.map {|o| conds[o] }.reject(&:blank?).uniq
-          return scoped if scope.all?(&:blank?)
+          return all if scope.all?(&:blank?)
           table_alias = "#{method_any}_alias"
           joins('INNER JOIN `spree_product_properties` AS `' + table_alias + '` ON `' + table_alias + '`.`product_id` = `spree_products`.`id`').where(table_alias => { value: scope})
           #joins(:product_properties).where(Spree::ProductProperty.table_name => { value: scope})
@@ -175,8 +175,8 @@ module Spree
           props = Spree::ProductProperty.where(property_id: p.id).pluck(:value).uniq.map(&:to_s).reject(&:blank?) if taxon.nil?
           props = Spree::ProductProperty.where(property_id: p.id).joins(product: :taxons).where("#{Spree::Taxon.table_name}.id" => [taxon] + taxon.descendants).pluck(:value).uniq.map(&:to_s).reject(&:blank?) if !taxon.nil?
 
-          conds = Hash[*props.map{ |b| b.split(", ").map{|s| [s, b]} }.flatten]
-          props = props.map{|o| o.split(", ")}.flatten.sort
+          conds = Hash[*props.map{ |b| b.split(",").map{|s| [s.strip, b]} }.flatten]
+          props = props.map{|o| o.split(",").map!(&:strip)}.flatten.sort
           {
             name:   p.name,
             scope:  method_any,

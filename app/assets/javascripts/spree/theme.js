@@ -5,9 +5,15 @@
 //= require jquery.dotdotdot-1.5.2
 //= require matchMedia
 //= require enquire
-
+//= require select2
 
 $(function(){
+  // jQuery(function($) {
+
+  $('select.select2').select2({
+    allowClear: true,
+    dropdownAutoWidth: true
+  });
 
   // Hide flash messages after timeout
   setTimeout('$(".flash").fadeOut(1000)', 5000);

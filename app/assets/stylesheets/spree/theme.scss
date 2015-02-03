@@ -3,6 +3,7 @@
  = require jquery.bxslider
  = require icons
  = require icons-codes
+ = require select2
 */
 @import 'compass';
 @import 'compass/css3';
@@ -24,6 +25,7 @@
 @import 'spree/theme/components/messages';
 @import 'spree/theme/components/navigation';
 @import 'spree/theme/components/pagination';
+@import 'spree/theme/components/select2';
 
 @import 'spree/theme/sections/checkout';
 @import 'spree/theme/sections/cart';
