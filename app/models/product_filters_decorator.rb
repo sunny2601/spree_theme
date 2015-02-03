@@ -56,8 +56,8 @@ module Spree
       #     we can access the field right away
       #   The filter identifies which scope to use, then sets the conditions for each price range
       Spree::Product.add_search_scope :price_range do |*opts|
-        opts[0] = opts[0].blank? || opts[0].to_f < 0 ? "0" : opts[0]
         return all if opts.all?(&:blank?) || opts.length < 2
+        opts[0] = opts[0].blank? || opts[0].to_f < 0 ? "0" : opts[0]
         price_between(*opts)
       end
 
@@ -181,7 +181,7 @@ module Spree
             name:   p.name,
             scope:  method_any,
             conds:  conds,
-            labels: props.map { |k| [k, k] }
+            labels: props.map { |k| [k, k] }.uniq
           }
         end
       end
