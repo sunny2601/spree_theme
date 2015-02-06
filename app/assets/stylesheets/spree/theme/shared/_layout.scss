@@ -320,6 +320,33 @@ ul#products li {
 
 .taxons-list {
   margin-bottom: 40px;
+
+  ul.taxons-list {
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
+
+  li {
+    list-style-type: none;
+
+    a {
+      font-weight: 600 !important;
+
+      &:hover, &.active {
+        color: $c_green !important;
+      }
+    }
+
+    &.current {
+      color: darken($c_green, 30);
+      font-size: 14px;
+    }
+  }
+}
+
+
+.category-menu {
+  display: none;
 }
 
 .adsbygoogle {

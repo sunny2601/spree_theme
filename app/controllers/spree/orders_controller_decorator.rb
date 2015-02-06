@@ -1,5 +1,5 @@
 Spree::OrdersController.class_eval do
-respond_to :html, :js
+  respond_to :html, :js
  
   # override populate method
   def populate

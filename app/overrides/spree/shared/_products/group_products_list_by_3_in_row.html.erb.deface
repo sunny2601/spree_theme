@@ -1,23 +1,21 @@
 <!-- replace 'ul#products' -->
 <ul id="products" class="inline product-listing" data-hook>
-    <li class="product-row">
-      <ul>
-  <% products.in_groups_of(3, false).each do |product_row| %>
-        <% product_row.each do |product| %>
-          <li id="product_<%= product.id %>" class="product four <%= cycle('alpha', 'secondary', 'omega', name: 'classes') %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-            <div class="product-image">
-              <%= link_to product_image(product, itemprop: "image"), product, itemprop: 'url' %>
-            </div>
-            <%= link_to truncate(product.name, length: 50), product, class: 'info', itemprop: "name", title: product.name %>
-            <span class="product-cart">
-              <span class="price selling" itemprop="price"><%= display_price(product) %></span>
-<%= link_to_with_icon('icon-basket', Spree.t(:add_to_cart), add_to_cart_path(variant_id: product.master.id), { id: 'add_to_cart_button_' + product.id.to_s, class: 'icon-basket button', no_text: true, remote: true, method: :put, "data-type" => :json }) %>
+  <li class="product-row">
+    <ul>
+      <% products.each do |product| %>
+        <li id="product_<%= product.id %>" class="product four <%= cycle('alpha', 'secondary', 'omega', name: 'classes') %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+          <div class="product-image">
+            <%= link_to product_image(product, itemprop: "image"), product, itemprop: 'url' %>
+          </div>
+          <%= link_to truncate(product.name, length: 50), product, class: 'info', itemprop: "name", title: product.name %>
+          <span class="product-cart">
+            <span class="price selling" itemprop="price"><%= display_price(product) %></span>
+            <%= link_to_with_icon('icon-basket', Spree.t(:add_to_cart), add_to_cart_path(variant_id: product.master.id), { id: 'add_to_cart_button_' + product.id.to_s, class: 'icon-basket button', no_text: true, remote: true, method: :put, "data-type" => :json }) %>
 <%#= content_tag(:i, '', { class: 'icon-basket button', no_text: true, title: Spree.t(:item_in_cart), "data-type" => :json }) %>
-            </span>
-          </li>
-        <% end %>
-  <% end %>
-  <% reset_cycle("classes") %>
-      </ul>
-    </li>
+          </span>
+        </li>
+      <% end %>
+      <% reset_cycle("classes") %>
+    </ul>
+  </li>
 </ul>

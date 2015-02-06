@@ -71,6 +71,13 @@
       .taxons-list {
         margin: 0;
 
+        ul li a {
+          padding-left: 50px !important;
+          ul li a {
+            padding-left: 65px !important;
+          }
+        }
+
         li {
           width: 100%;
 
@@ -147,6 +154,7 @@ nav #main-nav-bar, nav#top-nav-bar {
     }
   }
 }
+
 nav #main-nav-bar li {
   a {
     padding-right: 30px;
@@ -158,7 +166,7 @@ nav #main-nav-bar li {
     }  
   }
 }
-nav#taxonomies .taxonomy-root, #sidebar_products_search .filter-title, .product-section-title {
+nav#taxonomies .taxonomy-root, nav#categories  .taxonomy-root, #sidebar_products_search .filter-title, .product-section-title {
   color: $c_orange;
   border-bottom: 2px solid lighten($c_orange, 40);
   margin-bottom: 16px;

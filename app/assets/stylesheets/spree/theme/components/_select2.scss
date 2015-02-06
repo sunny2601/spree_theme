@@ -22,25 +22,7 @@
   } @else {
     @return nth($prop, $n2);
   }
-}
-
-
-
-
-//
-$color-1: #FFFFFF !default; // White
-$color-2: #9FC820 !default; // Green
-$color-3: #5498DA !default; // Light Blue
-$color-4: #6788A2 !default; // Dark Blue
-$color-5: #C60F13 !default; // Red
-$color-6: #FF9300 !default; // Yellow
-
-// Select2 select field colors
-$color-sel-bg: $color-3 !default;
-$color-sel-text: $color-1 !default;
-$color-sel-hover-bg: $color-2 !default;
-$color-sel-hover-text: $color-1 !default;
-
+};
 
 
 // -------------------------------------------------------------
@@ -105,8 +87,6 @@ $font-weight-normal:             400 !default;
 
 
 
-
-
 .select2-container {
   &:hover .select2-choice, &.select2-container-active .select2-choice {
     background-color: $color-sel-hover-bg !important;
@@ -130,8 +110,8 @@ $font-weight-normal:             400 !default;
     }
 
     .select2-search-choice-close {
-      @extend .fa;
-      @extend .fa-times;
+      //@extend .fa;
+      //@extend .fa-times;
       margin-top: 2px;
       font-size: 100% !important;
       background-image: none !important;
@@ -313,4 +293,42 @@ label .select2-container {
 
 .select2-search {
     display: none;
+}
+
+
+html.firefox {
+  // Fix select2 tag input size
+  input.select2-input {
+    padding: 0px 10px !important;
+  }
+  // Fix select2 tag input container padding
+  .select2-container-multi .select2-choices {
+    padding-bottom: 0 !important;
+  }
+  // Fix select2 search input left padding to not overlap search icon
+  .select2-search input.select2-input {
+    padding-bottom: 12px !important;
+    padding-left: 25px !important;
+  }
+}
+
+// IE general hacks
+html.ie {
+  // Fix select2 background gradient. (It uses filter gradients for IE)
+  .select2-choice, .select2-choice div, 
+  .select2-container-multi .select2-search-choice,
+  .select2-container:hover .select2-choice,
+  .select2-container.select2-container-active .select2-choice {
+    filter: none;
+  }
+  .select2-search {
+    &:before {
+      z-index: 10000;
+      content: '\f002' !important;
+    }
+    input {
+      position: relative;
+      z-index: 0;
+    }
+  }
 }

@@ -1,9 +1,9 @@
 <!-- replace 'erb:contains("labels.each")' closing_selector "erb:contains('end')" -->
           <% p = params[:search] && params[:search][filter[:scope]] %>
           <% pr = filter[:name] == Spree.t(:price_range) %>
-          <% p && pr && price_range = params[:search][filter[:scope]] %>
+          <% p && pr && price_range = params[:search][filter[:scope]].map{|o| o} %>
           <% sb = filter[:name] == Spree.t(:sort_by) %>
-          <% max_properties = 10 #Spree::Config[:max_properties] || 10 %>
+          <% max_properties = 2 #Spree::Config[:max_properties] || 10 %>
           <% show_individual_props = true %>
 
 

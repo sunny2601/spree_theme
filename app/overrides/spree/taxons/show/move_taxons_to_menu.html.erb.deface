@@ -1,0 +1,15 @@
+<!-- replace_contents '[data-hook="taxon_sidebar_navigation"]' -->
+    <div class="category-menu">
+      <%#= render partial: 'spree/shared/taxonomies' %>
+    </div>
+
+    <% if @taxon %>
+      <nav id="categories" class="sidebar-item" data-hook>
+          <% cache [I18n.locale, @taxon] do %>
+            <h6 class='taxonomy-root'><%= Spree.t(:shop_by) %> <%= link_to @taxon.taxonomy.name, params.merge(id: @taxon.taxonomy.root.permalink) %></h6>
+            <%= taxon_nav(@taxon.taxonomy.root, @taxon) %>
+          <% end %>
+      </nav>
+    <% end %>
+
+    <%= render partial: 'spree/shared/filters' %>
