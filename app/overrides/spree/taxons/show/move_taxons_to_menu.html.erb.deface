@@ -5,10 +5,10 @@
 
     <% if @taxon %>
       <nav id="categories" class="sidebar-item" data-hook>
-          <#% cache [I18n.locale, @taxon] do %>
+          <%# cache [I18n.locale, @taxon] do %>
             <h6 class='taxonomy-root'><%= Spree.t(:shop_by) %> <%= link_to @taxon.taxonomy.name, params.merge(id: @taxon.taxonomy.root.permalink) %></h6>
             <%= taxon_nav(@taxon.taxonomy.root, @taxon) %>
-          <#% end %>
+          <%# end %>
       </nav>
     <% end %>
 
