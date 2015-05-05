@@ -1,6 +1,6 @@
 <!-- insert_top '[data-hook="body"]' -->
 <div id="ajax_cart_flash" class="dialog">
-  <span style="margin-left: 625px;">
+  <span class="dialog-close">
     <button class="button close-dialog-button">X</button>
   </span>
   <ul id="products" class="inline">
@@ -16,7 +16,7 @@
       <span id="dialog_description" class="description"> has sucessfully been added to your cart.</span>
     </div>
   </div>
-  <div style="margin-left: 320px;">
+  <div class="dialog-continue">
     <span><button class="button close-dialog-button">Continue Shopping</button></span>
     <span><%= link_to_with_icon('icon-basket', Spree.t(:view_cart), spree.cart_path, { class: 'icon-basket button' }) %></span>
   </div>

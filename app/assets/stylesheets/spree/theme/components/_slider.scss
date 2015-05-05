@@ -1,5 +1,5 @@
 #subheader {
-  @include single-box-shadow(darken($c_green, 10), 0, 0, 15px, 0, true);
+  @include single-box-shadow(0, 0, 15px, 0, darken($c_green, 10), true);
   // background: image-url('spree/theme/subheader-bg.png') repeat center;
   background-color: lighten($c_green, 5);
   color: white;

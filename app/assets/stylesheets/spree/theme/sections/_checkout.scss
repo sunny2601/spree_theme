@@ -15,7 +15,7 @@
     color: white;
 
     &.current, &.current-first, &.current-last {
-      @include single-box-shadow(darken($c_green, 10), 0, 0, 10px, 0);
+      @include single-box-shadow(0, 0, 10px, 0, darken($c_green, 10));
       background-color: $c_orange;
       color: white;
       border-left: 5px solid lighten($c_orange, 8);

@@ -150,7 +150,7 @@ $font-weight-normal:             400 !default;
   padding: 0 9px 0 0;
 
   &:before {
-    @extend [class^="icon-"]:before;
+    @extend [class^="icon-"]:before !optional;
 
     position: absolute;
     top: 16px;

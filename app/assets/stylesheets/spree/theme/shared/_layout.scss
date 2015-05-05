@@ -144,15 +144,15 @@ ul#products {
     background-color: #FFF;
     z-index: 20001;
     min-height: 250px;
-    min-width: 550px;
-    max-width: 684px;
+    min-width: 600px;
+    max-width: 600px;
 
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -150px;
-    margin-left: -350px;
+    margin-left: -300px;
 }
 
 .dialog-image {
@@ -163,6 +163,7 @@ ul#products {
     left: 40px;
     padding: 0 !important;
 }
+
 .dialog-image-link {
     width: 136px;
 }
@@ -171,14 +172,28 @@ ul#products {
     text-decoration: line-through;
 }
 
+.dialog-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dialog-continue {
+  position: absolute;
+  bottom: 15px;
+  right: 50px;
+}
+
 .purchase-container {
     padding-bottom: 20px;
     width: 600px;
 }
 
 .purchase-header {
-    margin-left: 220px;
-    padding: 12px 20px;
+  padding: 12px 20px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
 }
 
 .purchase-option-details .name {
@@ -203,39 +218,6 @@ ul#products {
     color: #8D8D8D;
     display: table-row;
     font-size: 16px;
-}
-
-.play-button:focus, .play-button.focus {
-    box-shadow: none;
-    outline: 4px solid #C7DCFC;
-}
-.no-focus-outline button {
-    outline: medium none;
-}
-.gp-button {
-    border-radius: 2px;
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-    transition: all 0.2s ease 0s;
-    -moz-user-select: none;
-    background-color: #FFF;
-    border: 1px solid rgba(0, 0, 0, 0.17);
-    color: #737373;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Roboto",sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    height: 36px;
-    line-height: 34px;
-    min-width: 40px;
-    padding: 0px 20px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    vertical-align: middle;
 }
 
 ul#products li {
@@ -318,10 +300,10 @@ ul#products li {
 }
 
 
-.taxons-list {
+.taxons-list, .list {
   margin-bottom: 40px;
 
-  ul.taxons-list {
+  ul.taxons-list, ul.list {
     margin-left: 15px;
     margin-bottom: 0;
   }
@@ -369,7 +351,7 @@ ul#products li {
 
 
 footer#footer {
-  @include single-box-shadow(darken($c_blue, 10), 0, 0, 15px, 0, true);
+  @include single-box-shadow(0, 0, 15px, 0, darken($c_blue, 10), true);
   // background: image-url("spree/theme/footer-bg.png") repeat center;
   background-color: lighten($c_blue, 5);
   margin-top: 30px;

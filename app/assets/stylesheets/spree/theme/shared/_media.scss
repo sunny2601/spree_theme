@@ -267,6 +267,8 @@
     }
 
     ul#products li {
+      width: unset;
+      margin: unset;
       a.info {
         font-size: 12px;
         font-weight: 600;
@@ -536,6 +538,12 @@
       height: 100px;
     }
 
+    .dialog {
+      min-width: 460px;
+      max-width: 460px;
+      margin-left: -230px;
+    }
+
   }
 }
 
@@ -649,6 +657,25 @@
         .price {
         }
       }
+    }
+
+    .dialog {
+      min-width: 302px;
+      max-width: 302px;
+      margin-left: -151px;
+    }
+
+    .dialog-image {
+      position: relative;
+      margin: 0;
+    }
+    .purchase-header {
+      position: unset;
+    }
+
+    .dialog-continue {
+      position: unset;
+      margin-bottom: 15px;
     }
 
     .adsbygoogle {
