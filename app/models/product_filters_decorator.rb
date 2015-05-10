@@ -36,11 +36,11 @@ module Spree
 
       Spree::Product.class_eval do #.add_search_scope :ascend_by_name do |name|
         cname = "#{Product.quoted_table_name}.name"
-        self.scope("ascend_by_name", -> { select("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END as sort_name").order("sort_name ASC") })
+        self.scope("ascend_by_name", -> { select("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END as `sort_name`").order("`sort_name` ASC") })
       #end
       #Spree::Product.class_eval do #.add_search_scope :descend_by_name do
         #cname = "#{Product.quoted_table_name}.name"
-        self.scope("descend_by_name", -> { select("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END as sort_name").order("sort_name DESC") })
+        self.scope("descend_by_name", -> { select("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END as `sort_name`").order("`sort_name` DESC") })
       end
 
       #reorder()
