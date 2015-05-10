@@ -76,7 +76,7 @@ module Spree
 
 
       Spree::Property.all.each do |p|
-        method_any = p.name.downcase + "_any"
+        method_any = "#{p.name.downcase}_any"
         Spree::Product.add_search_scope method_any do |*opts|
           conds = ProductFilters.send("#{method_any}_filter", nil)[:conds]
 
@@ -88,10 +88,10 @@ module Spree
           #with_property(p.name).where(scope)
 
           #scope = opts.reject{|o| !props.include?(o) }
-          scope = opts.map {|o| conds[o] }.reject(&:blank?).uniq
-          return all if scope.all?(&:blank?)
+          opts_conds = opts.map{|o| conds[o] }.reject(&:blank?).uniq
+          return all if opts_conds.all?(&:blank?)
           table_alias = "#{method_any}_alias"
-          joins('INNER JOIN `spree_product_properties` AS `' + table_alias + '` ON `' + table_alias + '`.`product_id` = `spree_products`.`id`').where(table_alias => { value: scope})
+          joins("INNER JOIN `spree_product_properties` AS `#{table_alias}` ON `#{table_alias}`.`product_id` = `spree_products`.`id`").where(table_alias => { value: opts_conds})
           #joins(:product_properties).where(Spree::ProductProperty.table_name => { value: scope})
         end
 
@@ -101,16 +101,19 @@ module Spree
           #pp = Spree::ProductProperty.arel_table.alias("#{method_any}_alias")
           #conds = Hash[*props.map{ |b| b.split(", ").map{|s| [s, pp[:value].eq(b)]} }.flatten]
 
-          props = Spree::ProductProperty.where(property_id: p.id).pluck(:value).uniq.map(&:to_s).reject(&:blank?) if taxon.nil?
-          props = Spree::ProductProperty.where(property_id: p.id).joins(product: :taxons).where("#{Spree::Taxon.table_name}.id" => [taxon] + taxon.descendants).pluck(:value).uniq.map(&:to_s).reject(&:blank?) if !taxon.nil?
+          if taxon.nil?
+            props = Spree::ProductProperty.where(property_id: p.id).pluck(:value).uniq.map(&:to_s).reject(&:blank?)
+          else
+            props = Spree::ProductProperty.where(property_id: p.id).joins(product: :taxons).where("#{Spree::Taxon.table_name}.id" => [taxon] + taxon.descendants).pluck(:value).uniq.map(&:to_s).reject(&:blank?)
+          end
 
-          conds = Hash[*props.map{ |b| b.split(",").map{|s| [s.strip, b]} }.flatten]
+          conds = {}.tap{ |r| props.map{ |b| b.split(",").map{|s| [s.strip, b]} }.each{ |h| h.each{ |k,v| (r[k]||=[]) << v } } }
           props = props.map{|o| o.split(",").map(&:strip)}.flatten.sort
           {
             name:   p.name,
-            scope:  method_any,
+            scope:  method_any.to_sym,
             conds:  conds,
-            labels: props.map { |k| [k, k] }.uniq
+            labels: props.uniq.map{|k| [k, k] }
           }
         end
       end
