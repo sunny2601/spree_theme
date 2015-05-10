@@ -103,32 +103,42 @@ $(function(){
   enquire.register("screen and (max-width: 479px)", {
     match : function() {
       $('div[data-hook="cart_container"]').parent().parent().css("width", "auto");
-      $('#google_ads ins').css("width", "287px").css("height", "80px");
+      //$('#google_ads ins, #google_ads iframe').width(287).height(80);
     },
     unmatch : function() {
       $('div[data-hook="cart_container"]').parent().parent().css("width", "");
+      //$('#google_ads, #google_ads ins, #google_ads iframe').width(935).height(140);
     }
   }).listen();
 
   enquire.register("screen and (min-width: 768px) and (max-width: 959px)", {
     match : function() {
       $('div[data-hook="cart_container"]').parent().parent().css("width", "auto");
-      $('#google_ads ins').css("width", "735px").css("height", "120px");
+      //$('#google_ads ins, #google_ads iframe').width(735).height(120);
     },
     unmatch : function() {
       $('div[data-hook="cart_container"]').parent().parent().css("width", "");
-      //$('#google_ads ins').css("width", "935px").css("height", "140px");
+      //$('#google_ads, #google_ads ins, #google_ads iframe').width(935).height(140);
     }
   }).listen();
 
   enquire.register("screen and (min-width: 480px) and (max-width: 767px)", {
     match : function() {
-      $('#google_ads ins').css("width", "435px").css("height", "100px");
+      //$('#google_ads ins, #google_ads iframe').width(435).height(100);
     },
     unmatch : function() {
-      $('#google_ads ins').css("width", "935px").css("height", "140px");
+      //$('#google_ads, #google_ads ins, #google_ads iframe').width(935).height(140);
     }
   }).listen();
+
+  enquire.register("screen and (min-width: 960px) and (max-width: 9999px)", {
+    match : function() {
+      //$('#google_ads ins, #google_ads iframe').width(935).height(140);
+    },
+    unmatch : function() {
+    }
+  }).listen();
+
 
 });
 

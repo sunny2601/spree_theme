@@ -34,6 +34,15 @@ module Spree
         ascend_by_name
       end
 
+      Spree::Product.class_eval do #.add_search_scope :ascend_by_name do |name|
+        cname = "#{Product.quoted_table_name}.name"
+        self.scope("ascend_by_name", -> { order("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END ASC") })
+      #end
+      #Spree::Product.class_eval do #.add_search_scope :descend_by_name do
+        #cname = "#{Product.quoted_table_name}.name"
+        self.scope("descend_by_name", -> { order("CASE WHEN (INSTR(LOWER(#{cname}), 'a ') = 1) THEN SUBSTR(LOWER(#{cname}), 3) WHEN (INSTR(LOWER(#{cname}), 'an ') = 1) THEN SUBSTR(LOWER(#{cname}), 4) WHEN (INSTR(LOWER(#{cname}), 'the ') = 1) THEN SUBSTR(LOWER(#{cname}), 5) ELSE LOWER(#{cname}) END DESC") })
+      end
+
       #reorder()
       Spree::Product.add_search_scope :sort_by do |*opts|
         return unscope(:order).ascend_by_name if opts.all?(&:blank?)
@@ -96,7 +105,7 @@ module Spree
           props = Spree::ProductProperty.where(property_id: p.id).joins(product: :taxons).where("#{Spree::Taxon.table_name}.id" => [taxon] + taxon.descendants).pluck(:value).uniq.map(&:to_s).reject(&:blank?) if !taxon.nil?
 
           conds = Hash[*props.map{ |b| b.split(",").map{|s| [s.strip, b]} }.flatten]
-          props = props.map{|o| o.split(",").map!(&:strip)}.flatten.sort
+          props = props.map{|o| o.split(",").map(&:strip)}.flatten.sort
           {
             name:   p.name,
             scope:  method_any,

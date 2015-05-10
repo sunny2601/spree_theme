@@ -326,7 +326,6 @@ ul#products li {
   }
 }
 
-
 .category-menu {
   display: none;
 }
@@ -334,12 +333,19 @@ ul#products li {
 #google_ads {
   text-align: center;
   margin-top: 5px;
+  width: 935px;
+  height: 160px;
+  display:inline-block;
 }
 
-.adsbygoogle {
+.adsbygoogle-horizontal {
+  display:block;
+}
+
+.xadslot_1 {
   display:inline-block;
   width: 935px;
-  height: 140px;
+  height: 640px;
 }
 
 .adsbygoogle-product {

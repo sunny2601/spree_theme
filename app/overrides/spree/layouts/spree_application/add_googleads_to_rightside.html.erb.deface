@@ -1,9 +1,9 @@
-<!-- insert_bottom '#content' -->
+<!-- insert_after '#content' -->
 <!-- sequence :after => 'unwrap_header_from_container_class' -->
   <div id="google_ads">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- Banner Ad -->
-    <ins class="adsbygoogle-product" data-ad-client="ca-pub-9050834417500806" data-ad-slot="4887444979"></ins>
+      <!-- uc-store -->
+      <ins class="adsbygoogle adsbygoogle-horizontal" data-ad-client="ca-pub-9050834417500806" data-ad-slot="4245477372" data-ad-format="auto"></ins>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
