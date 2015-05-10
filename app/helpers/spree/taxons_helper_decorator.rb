@@ -11,12 +11,14 @@ Spree::TaxonsHelper.class_eval do
       #return '' if max_level < 1 || root_taxon.children.empty?
       content_tag :ul, class: 'taxons-list' do
         root_taxon.children.map do |taxon|
-          css_class = (current_taxon && current_taxon.eql?(taxon)) ? 'current' : ( current_taxon.self_and_ancestors.include?(taxon) ? 'parent' : nil)
+          css_class = (current_taxon && current_taxon.eql?(taxon)) ? 'current' : ( current_taxon.ancestors.include?(taxon) ? 'parent' : ( current_taxon.descendants.include?(taxon) ? 'child' : nil))
           content_tag :li, class: css_class do
             if css_class == 'current'
               content_tag(:strong, taxon.name) + taxon_nav(taxon, current_taxon, max_level - 1)
+            elsif css_class == 'child' || css_class == 'parent'
+              link_to(taxon.name, params.slice(:search).merge(id: taxon.permalink)) + taxon_nav(taxon, current_taxon, max_level - 1)
             else
-              link_to(taxon.name, params.merge(id: taxon.permalink)) + taxon_nav(taxon, current_taxon, max_level - 1)
+              link_to(taxon.name, seo_url(taxon), class: css_class) + taxon_nav(taxon, current_taxon, max_level - 1)
             end
           end
         end.join("\n").html_safe
